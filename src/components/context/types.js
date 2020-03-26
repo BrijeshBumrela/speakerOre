@@ -1,0 +1,9 @@
+export const FILTER_EVENTS = 'FILTER_EVENTS';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
+export const SIGN_IN_GOOGLE = 'SIGN_IN_GOOGLE';
+export const SIGN_IN_FB = 'SIGN_IN_FB';
+export const SIGN_IN_FAIL = 'SIGN_IN_FAIL';
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const LOGOUT = 'LOGOUT';
+export const LOAD_USER = 'LOAD_USER';
