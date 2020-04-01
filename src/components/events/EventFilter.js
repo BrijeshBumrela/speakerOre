@@ -70,12 +70,12 @@ const EventFilter = () => {
     <Sider
       className='site-layout-background'
       width={300}
-      height={'780px'}
+      style={{ height: '300px' }}
       theme='light'
     >
       <Collapse
         bordered={false}
-        defaultActiveKey={['1', '4']}
+        defaultActiveKey={['1', '2', '3', '4']}
         expandIcon={({ isActive }) => (
           <CaretRightOutlined rotate={isActive ? 90 : 0} />
         )}

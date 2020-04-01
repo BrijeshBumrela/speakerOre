@@ -72,14 +72,14 @@ const Event = ({ match }) => {
         style={{
           padding: '0 100px',
           display: 'flex',
-          justifyContent: 'space-between'
+          alignItems: 'flex-start'
         }}
       >
         <Card
           className='site-layout-background'
           style={{
             padding: '15px',
-            flex: '2 1 auto',
+            flex: '2',
             margin: '0 5px 0 0'
           }}
         >
@@ -94,10 +94,29 @@ const Event = ({ match }) => {
           <br />
           <div>
             {tags.map((tag, index) => (
-              <Tag color='#0f74a8' key={index}>
+              <Tag color='#d39e00' key={index}>
                 {tag.toUpperCase()}
               </Tag>
             ))}
+          </div>
+          <br /> <br /> <br />
+          <br />
+          <div display='inline-block' padding='10px 10px'>
+            <Button>
+              <a
+                href={
+                  'mailto:' +
+                  { email } +
+                  '?subject=Testing out mailto!&body=This is only a test!'
+                }
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Email Organiser
+              </a>
+            </Button>
+            <Button>Add to calendar</Button>
+            <Button type='primary'>Suggest Changes</Button>
           </div>
         </Card>
         <Card
@@ -105,7 +124,7 @@ const Event = ({ match }) => {
           title={'Contact'}
           style={{
             padding: '5px',
-            flex: '1 1 auto',
+            flex: '1',
             margin: '0px 0 0 10px'
           }}
         >

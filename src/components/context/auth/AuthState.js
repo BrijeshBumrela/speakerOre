@@ -31,7 +31,118 @@ const AuthState = props => {
     user: null,
     error: null,
     auth_modal_visible: false,
-    role: 'RDTEAM'
+    bookmarks: [
+      {
+        id: 1,
+        name: 'Tomorrowland',
+        about:
+          'Tomorrowland takes place at recreation area "De Schorre" in Boom, Belgium. The town of Boom is situated between Antwerp & Brussels.  ',
+        street: '4/2 Kilpauk',
+        city: 'Chennai',
+        state: 'Tamil Nadu',
+        country: 'India',
+        postalcode: '600010',
+        website: 'tomorrowland.com',
+        email: 'yolo@gmail.com',
+        phone: '91-1234567890',
+        description:
+          "Tomorrowland is a Belgian electronic dance music festival held in Boom, Belgium. Tomorrowland was first held in 2005 and has since become one of the world's largest and most notable music festivals.[2] It now stretches over 2 weekends and it usually sells out in minutes.",
+        status: 'published',
+        is_visible: 'true',
+        categories: ['music', 'festival'],
+        tags: ['concert', 'belgium'],
+        start_date: '10/03/2020',
+        end_date: '12/03/2020'
+      },
+      {
+        id: 2,
+        name: 'Holi Party',
+        about:
+          'Tomorrowland takes place at recreation area "De Schorre" in Boom, Belgium. The town of Boom is situated between Antwerp & Brussels.  ',
+        street: '4/2 Kilpauk',
+        city: 'Chennai',
+        country: 'India',
+        website: 'tomorrowland.com',
+        email: 'yolo@gmail.com',
+        phone: '91-1234567890',
+        description:
+          "Tomorrowland is a Belgian electronic dance music festival held in Boom, Belgium. Tomorrowland was first held in 2005 and has since become one of the world's largest and most notable music festivals.[2] It now stretches over 2 weekends and it usually sells out in minutes.",
+        status: 'published',
+        is_visible: 'true',
+        categories: ['music', 'festival'],
+        tags: ['concert', 'fun'],
+        start_date: '10/03/2020',
+        end_date: '12/03/2020'
+      }
+    ],
+    subscription_start_time: '',
+    subscription_end_time: '',
+    role: 'RDTEAM',
+    events: [
+      {
+        id: 3,
+        name: 'Holi Party',
+        about:
+          'Tomorrowland takes place at recreation area "De Schorre" in Boom, Belgium. The town of Boom is situated between Antwerp & Brussels.  ',
+        street: '4/2 Kilpauk',
+        city: 'Chennai',
+        country: 'India',
+        website: 'tomorrowland.com',
+        email: 'yolo@gmail.com',
+        phone: '91-1234567890',
+        description:
+          "Tomorrowland is a Belgian electronic dance music festival held in Boom, Belgium. Tomorrowland was first held in 2005 and has since become one of the world's largest and most notable music festivals.[2] It now stretches over 2 weekends and it usually sells out in minutes.",
+        status: 'published',
+        is_visible: 'true',
+        categories: ['music', 'festival'],
+        tags: ['concert', 'fun'],
+        start_date: '10/03/2020',
+        end_date: '12/03/2020',
+        status: 'accepted'
+      },
+      {
+        id: 4,
+        name: 'Tomorrowland',
+        about:
+          'Tomorrowland takes place at recreation area "De Schorre" in Boom, Belgium. The town of Boom is situated between Antwerp & Brussels.  ',
+        street: '4/2 Kilpauk',
+        city: 'Chennai',
+        country: 'India',
+        website: 'tomorrowland.com',
+        email: 'yolo@gmail.com',
+        phone: '91-1234567890',
+        description:
+          "Tomorrowland is a Belgian electronic dance music festival held in Boom, Belgium. Tomorrowland was first held in 2005 and has since become one of the world's largest and most notable music festivals.[2] It now stretches over 2 weekends and it usually sells out in minutes.",
+        status: 'published',
+        is_visible: 'true',
+        categories: ['music', 'festival'],
+        tags: ['concert', 'belgium'],
+        start_date: '10/03/2020',
+        end_date: '12/03/2020',
+        status: 'declined'
+      },
+      {
+        id: 5,
+        name: 'Tomorrowland',
+        about:
+          'Tomorrowland takes place at recreation area "De Schorre" in Boom, Belgium. The town of Boom is situated between Antwerp & Brussels.  ',
+        street: '4/2 Kilpauk',
+        city: 'Chennai',
+        country: 'India',
+        website: 'tomorrowland.com',
+        email: 'yolo@gmail.com',
+        phone: '91-1234567890',
+        description:
+          "Tomorrowland is a Belgian electronic dance music festival held in Boom, Belgium. Tomorrowland was first held in 2005 and has since become one of the world's largest and most notable music festivals.[2] It now stretches over 2 weekends and it usually sells out in minutes.",
+        status: 'published',
+        is_visible: 'true',
+        categories: ['music', 'festival'],
+        tags: ['concert', 'belgium'],
+        start_date: '10/03/2020',
+        end_date: '12/03/2020',
+        status: 'pending'
+      }
+    ]
   };
   const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -101,6 +212,10 @@ const AuthState = props => {
         error: state.error,
         auth_modal_visible: state.auth_modal_visible,
         role: state.role,
+        events: state.events,
+        subscription_start_time: state.subscription_start_time,
+        subscription_end_time: state.subscription_end_time,
+        bookmarks: state.bookmarks,
         loadUser,
         signIn_google,
         signIn_fb,

@@ -1,6 +1,9 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Events from '../events/Events';
+import Archives from '../events/Archives';
+import Bookmark from '../events/Bookmark';
+import MyEvents from '../events/MyEvents';
 import EventSearch from '../events/EventSearch';
 import EventFilter from '../events/EventFilter';
 import AuthContext from '../context/auth/authContext';
@@ -15,7 +18,7 @@ const { Content } = Layout;
 
 const EventsPage = () => {
   const authContext = useContext(AuthContext);
-  const { isSubscribed, role } = authContext;
+  const { isSubscribed, role, auth_modal_visible, show_modal } = authContext;
 
   const [option, setOption] = useState('all');
 
@@ -50,10 +53,10 @@ const EventsPage = () => {
           >
             <Radio.Group defaultValue='all' onChange={onChange}>
               <Radio.Button value='all'>All</Radio.Button>
-              <Radio.Button value='bookmarked'>Bookmarked</Radio.Button>
+              <Radio.Button value='bookmarks'>Bookmarks</Radio.Button>
               <Radio.Button value='my_events'>My Events</Radio.Button>
               {role === 'RDTEAM' && (
-                <Radio.Button value='archived'>Archived</Radio.Button>
+                <Radio.Button value='archive'>Archive</Radio.Button>
               )}
             </Radio.Group>
             <br />
@@ -62,8 +65,9 @@ const EventsPage = () => {
             <br />
             <br />
             {option === 'all' && <Events />}
-            {option === 'bookmarked' && <p>{'Bookmarked'}</p>}
-            {option === 'my_events' && <p>{'My Events'}</p>}
+            {option === 'bookmarks' && <Bookmark />}
+            {option === 'my_events' && <MyEvents />}
+            {option === 'archive' && <Archives />}
           </Content>
         </Layout>
       </Content>
@@ -115,7 +119,7 @@ const EventsPage = () => {
         </Button>
         <br />
         <br />
-        <a href='/'>Already Subscribed? Log in here</a>
+        <a onClick={() => show_modal()}>Already Subscribed? Log in here</a>
       </div>
       <FooterSection />
     </Fragment>

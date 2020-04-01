@@ -1,27 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import 'antd/dist/antd.css';
 import { Form, Input, Select, AutoComplete } from 'antd';
 
 const { Option } = Select;
-
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24
-    },
-    sm: {
-      span: 8
-    }
-  },
-  wrapperCol: {
-    xs: {
-      span: 15
-    },
-    sm: {
-      span: 10
-    }
-  }
-};
 
 export class event_details extends Component {
   prefixSelector = (
@@ -39,16 +20,15 @@ export class event_details extends Component {
   children = [];
 
   render() {
-    const { about, tags, phone, website, email } = this.props;
+    const { about, tags, phone, website, email } = this.props.values;
     const { handleChange, handleChangeLoc } = this.props;
     return (
-      <Form {...formItemLayout} name='contact_detail'>
+      <Fragment>
         <Form.Item name='tags' label='Tags'>
           <Select
             mode='tags'
             style={{ width: '100%' }}
             tokenSeparators={[',']}
-            size='small'
             defaultValue={tags}
             onChange={handleChangeLoc('tags')}
           >
@@ -110,7 +90,7 @@ export class event_details extends Component {
             defaultValue={about}
           />
         </Form.Item>
-      </Form>
+      </Fragment>
     );
   }
 }

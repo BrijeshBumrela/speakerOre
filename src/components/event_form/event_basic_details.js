@@ -1,25 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import 'antd/dist/antd.css';
 import { Form, DatePicker, Input } from 'antd';
-
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24
-    },
-    sm: {
-      span: 8
-    }
-  },
-  wrapperCol: {
-    xs: {
-      span: 15
-    },
-    sm: {
-      span: 10
-    }
-  }
-};
 
 export class event_basic_details extends Component {
   render() {
@@ -33,9 +14,9 @@ export class event_basic_details extends Component {
       country,
       postalcode
     } = this.props.values;
-    const { handleChange, handleChangeDate, handleChangeLoc } = this.props;
+    const { handleChange, handleChangeDate } = this.props;
     return (
-      <Form name='basic' {...formItemLayout}>
+      <Fragment>
         <Form.Item
           name='eventName'
           label={'Event Name'}
@@ -121,7 +102,7 @@ export class event_basic_details extends Component {
         </Form.Item>
         <Form.Item
           name='postalcode'
-          label={'Postalcode'}
+          label={'Postal code'}
           rules={[
             {
               required: true
@@ -133,7 +114,7 @@ export class event_basic_details extends Component {
             defaultValue={postalcode}
           />
         </Form.Item>
-      </Form>
+      </Fragment>
     );
   }
 }

@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { Card, Tag } from 'antd';
 import Meta from 'antd/lib/card/Meta';
-import { LikeOutlined, CalendarFilled, PushpinFilled } from '@ant-design/icons';
+import {
+  LikeOutlined,
+  CalendarFilled,
+  EnvironmentFilled
+} from '@ant-design/icons';
 
 const EventItem = ({ event }) => {
   const {
@@ -20,12 +24,22 @@ const EventItem = ({ event }) => {
   } = event;
   const location = street + ', ' + city + ', ' + country;
   const isLoading = false;
-  const loc_arr = [<PushpinFilled />, '  ', location];
+  const loc_arr = [<EnvironmentFilled />, '  ', location];
   const date_arr = [<CalendarFilled />, '  ', start_date, ' - ', end_date];
 
   return (
     <Card
-      title={<Link to={`/event/${id}`}>{name}</Link>}
+      title={
+        <Link
+          to={`/event/${id}`}
+          target='_blank'
+          rel='noopener noreferrer'
+          style={{ color: '#0f74a8', textDecorationColor: '#d39e00' }}
+        >
+          {name}
+        </Link>
+      }
+      headStyle={{ color: 'black' }}
       extra={<LikeOutlined />}
       hoverable
       loading={isLoading}

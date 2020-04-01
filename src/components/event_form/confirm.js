@@ -36,7 +36,7 @@ export class confirm extends Component {
     return (
       <div id='container' style={{ padding: '0px 10px 10px 10px' }}>
         <List
-          size='large'
+          size='default'
           bordered
           dataSource={data}
           renderItem={item => (

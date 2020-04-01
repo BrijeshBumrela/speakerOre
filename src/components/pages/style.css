@@ -13,3 +13,11 @@
   padding: 20px;
   text-align: center;
 }
+
+.site-card-wrapper {
+  background: #ececec;
+  padding: 100px;
+}
+[data-theme='dark'] .site-card-wrapper {
+  background: #303030;
+}

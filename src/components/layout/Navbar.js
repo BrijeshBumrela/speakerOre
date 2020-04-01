@@ -57,7 +57,6 @@ const Navbar = ({ title, isHome, heading }) => {
   } = authContext;
 
   const showModal = () => {
-    console.log(auth_modal_visible);
     show_modal();
   };
 
@@ -66,7 +65,7 @@ const Navbar = ({ title, isHome, heading }) => {
   const authLinks = (
     <div style={isHome ? {} : wimg}>
       <Menu mode='horizontal' style={isHome ? nav_style : bg}>
-        <Menu.Item key='logo'>
+        <Menu.Item key='logo' style={{ textDecoration: 'none' }}>
           <Link to='/'>
             <img src={logo} alt={title} className='logo' />
           </Link>
@@ -125,7 +124,7 @@ const Navbar = ({ title, isHome, heading }) => {
   const guestLinks = (
     <div style={isHome ? {} : wimg}>
       <Menu mode='horizontal' style={isHome ? nav_style : bg}>
-        <Menu.Item key='logo'>
+        <Menu.Item key='logo' style={{ textDecoration: 'none' }}>
           <Link to='/' style={a_style}>
             SpeakerOre
           </Link>

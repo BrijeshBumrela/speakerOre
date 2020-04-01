@@ -14,7 +14,7 @@ const Profile = () => {
   return (
     <Fragment>
       <Navbar heading={'Profile'} />
-      <Breadcrumb style={{ margin: '16px 0', padding: '10px 50px' }}>
+      <Breadcrumb style={{ margin: '16px 0', padding: '10px 100px' }}>
         <Breadcrumb.Item>
           <a href='/'>
             <HomeOutlined />
@@ -27,6 +27,7 @@ const Profile = () => {
         className='site-page-header'
         subTitle={email}
         avatar={{ src: photoURL }}
+        style={{ margin: '16px 0', padding: '10px 100px' }}
       ></PageHeader>
       <FooterSection />
     </Fragment>

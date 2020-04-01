@@ -29,6 +29,7 @@ const Login = () => {
         destroyOnClose={true}
         footer={null}
       >
+        <h1>Hello again!</h1>
         <h1>Welcome back</h1>
         <div>Sign in to know more..</div>
         <br />
