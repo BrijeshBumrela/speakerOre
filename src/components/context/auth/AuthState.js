@@ -9,7 +9,8 @@ import {
   LOGOUT,
   SIGN_IN_FAIL,
   SHOW_MODAL,
-  CLOSE_MODAL
+  CLOSE_MODAL,
+  USER_LOADED
 } from '../types';
 
 if (!firebase.apps.length) {
@@ -150,6 +151,12 @@ const AuthState = props => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        dispatch({ type: USER_LOADED, payload: user });
+      }
+    });
   };
 
   const show_modal = () => {

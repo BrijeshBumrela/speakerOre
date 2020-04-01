@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 import { Menu } from 'antd';
@@ -53,8 +53,14 @@ const Navbar = ({ title, isHome, heading }) => {
     isAuthenticated,
     show_modal,
     auth_modal_visible,
+    loadUser,
     logout
   } = authContext;
+
+  useEffect(() => {
+    loadUser();
+    // eslint-disable-next-line
+  }, []);
 
   const showModal = () => {
     show_modal();
@@ -66,8 +72,8 @@ const Navbar = ({ title, isHome, heading }) => {
     <div style={isHome ? {} : wimg}>
       <Menu mode='horizontal' style={isHome ? nav_style : bg}>
         <Menu.Item key='logo' style={{ textDecoration: 'none' }}>
-          <Link to='/'>
-            <img src={logo} alt={title} className='logo' />
+          <Link to='/' style={a_style}>
+            SpeakerOre
           </Link>
         </Menu.Item>
 

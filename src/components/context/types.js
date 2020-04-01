@@ -6,4 +6,4 @@ export const SIGN_IN_FAIL = 'SIGN_IN_FAIL';
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const LOGOUT = 'LOGOUT';
-export const LOAD_USER = 'LOAD_USER';
+export const USER_LOADED = 'USER_LOADED';

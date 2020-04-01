@@ -4,11 +4,19 @@ import {
   SIGN_IN_FB,
   SIGN_IN_FAIL,
   SHOW_MODAL,
-  CLOSE_MODAL
+  CLOSE_MODAL,
+  USER_LOADED
 } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: action.payload
+      };
     case SIGN_IN_GOOGLE:
     case SIGN_IN_FB:
       localStorage.setItem('token', action.payload.credential.idToken);
