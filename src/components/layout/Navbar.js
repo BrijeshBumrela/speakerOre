@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Login from './Login';
 import './style.css';
 import AuthContext from '../context/auth/authContext';
-import Background from '../../static/nav_bg1.jpg';
+import Background from '../../static/nav_bg.jpg';
 import logo from '../../static/logo.png';
 
 const wimg = {
@@ -41,7 +41,7 @@ const bg = {
 };
 
 const a_style = {
-  color: '#ffffff'
+  color: '#0f74a8'
 };
 
 const { SubMenu } = Menu;
@@ -128,11 +128,12 @@ const Navbar = ({ title, isHome, heading }) => {
   );
 
   const guestLinks = (
-    <div style={isHome ? {} : wimg}>
+    <div style={isHome ? {} : null}>
       <Menu mode='horizontal' style={isHome ? nav_style : bg}>
         <Menu.Item key='logo' style={{ textDecoration: 'none' }}>
           <Link to='/' style={a_style}>
-            SpeakerOre
+            <strong style={{ color: '#0f74a8' }}>Speaker</strong>
+            <span style={{ color: '#d39e00' }}>Ore</span>
           </Link>
         </Menu.Item>
         <Menu.SubMenu
@@ -161,13 +162,13 @@ const Navbar = ({ title, isHome, heading }) => {
           </Link>
         </Menu.Item>
       </Menu>
-      {!isHome && (
-        <div>
-          <div className='text-block'>
-            <h4>{heading}</h4>
-          </div>
-        </div>
-      )}
+      {!isHome &&
+        // <div>
+        //   <div className='text-block'>
+        //     <h4>{heading}</h4>
+        //   </div>
+        // </div>
+        null}
     </div>
   );
 
