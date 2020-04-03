@@ -110,27 +110,6 @@ export class form extends Component {
     message.success('Processing complete!');
   };
 
-  getStepOneValue = values => {
-    const { step_one_fields } = this.state;
-    console.log(values);
-    this.setState({
-      step_one_fields: {
-        ...step_one_fields,
-        ...values
-      }
-    });
-  };
-
-  getStepTwoValue = values => {
-    const { step_two_fields } = this.state;
-    this.setState({
-      step_two_fields: {
-        ...step_two_fields,
-        ...values
-      }
-    });
-  };
-
   render() {
     const { step, step_one_fields, step_two_fields } = this.state;
     const values3 = Object.assign(step_one_fields, step_two_fields);
@@ -159,7 +138,6 @@ export class form extends Component {
                 handleChange={this.handleChange1}
                 handleChangeDate={this.handleChangeDate}
                 handleChangeTag={this.handleChangeTag}
-                submittedValues={this.getStepOneValue}
                 nextStep={this.nextStep}
                 values={step_one_fields}
               />
@@ -168,7 +146,6 @@ export class form extends Component {
               <Event_details
                 handleChange={this.handleChange2}
                 handleChangeTag={this.handleChangeTag}
-                submittedValues={this.getStepTwoValue}
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
                 values={step_two_fields}

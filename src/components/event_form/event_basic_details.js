@@ -31,7 +31,6 @@ const tailLayout = {
 export class event_basic_details extends Component {
   onFinish = values => {
     console.log('Received values of form: ', values);
-    // this.props.submittedValues(values);
     this.props.nextStep();
   };
 
@@ -82,7 +81,6 @@ export class event_basic_details extends Component {
         >
           <Input
             onChange={handleChange('eventName')}
-            defaultValue={eventName}
             placeholder='Event Name'
           />
         </Form.Item>
@@ -101,7 +99,6 @@ export class event_basic_details extends Component {
             style={{ width: '345px' }}
             size='small'
             onChange={handleChangeDate('start_date')}
-            defaultValue={start_date_moment}
             placeholder='Start date'
           />
         </Form.Item>
@@ -110,7 +107,6 @@ export class event_basic_details extends Component {
             style={{ width: '345px' }}
             size='small'
             onChange={handleChangeDate('end_date')}
-            defaultValue={end_date_moment}
             placeholder='End date'
           />
         </Form.Item>
@@ -123,11 +119,7 @@ export class event_basic_details extends Component {
             }
           ]}
         >
-          <Input
-            onChange={handleChange('street')}
-            defaultValue={street}
-            placeholder='street'
-          />
+          <Input onChange={handleChange('street')} placeholder='street' />
         </Form.Item>
         <Form.Item
           name='city'
@@ -138,11 +130,7 @@ export class event_basic_details extends Component {
             }
           ]}
         >
-          <Input
-            onChange={handleChange('city')}
-            defaultValue={city}
-            placeholder='City'
-          />
+          <Input onChange={handleChange('city')} placeholder='City' />
         </Form.Item>
         <Form.Item
           name='state'
@@ -153,11 +141,7 @@ export class event_basic_details extends Component {
             }
           ]}
         >
-          <Input
-            onChange={handleChange('state')}
-            defaultValue={state}
-            placeholder='State'
-          />
+          <Input onChange={handleChange('state')} placeholder='State' />
         </Form.Item>
         <Form.Item
           name='country'
@@ -168,11 +152,7 @@ export class event_basic_details extends Component {
             }
           ]}
         >
-          <Input
-            onChange={handleChange('country')}
-            defaultValue={country}
-            placeholder='Country'
-          />
+          <Input onChange={handleChange('country')} placeholder='Country' />
         </Form.Item>
         <Form.Item
           name='postalcode'
@@ -186,7 +166,6 @@ export class event_basic_details extends Component {
         >
           <Input
             onChange={handleChange('postalcode')}
-            defaultValue={postalcode}
             placeholder='Postal code'
           />
         </Form.Item>

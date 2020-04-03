@@ -33,7 +33,6 @@ const tailLayout = {
 export class event_details extends Component {
   onFinish = values => {
     console.log('Received values of form: ', values);
-    // this.props.submittedValues(values);
     this.props.nextStep();
   };
 
@@ -79,7 +78,6 @@ export class event_details extends Component {
             mode='tags'
             style={{ width: '100%' }}
             tokenSeparators={[',']}
-            defaultValue={tags}
             onChange={handleChangeTag('tags')}
             placeholder='Tags'
           >
@@ -100,11 +98,7 @@ export class event_details extends Component {
             }
           ]}
         >
-          <Input
-            onChange={handleChange('email')}
-            defaultValue={email}
-            placeholder='E-mail'
-          />
+          <Input onChange={handleChange('email')} placeholder='E-mail' />
         </Form.Item>
         <Form.Item
           name='phone'
@@ -122,27 +116,23 @@ export class event_details extends Component {
               width: '100%'
             }}
             onChange={handleChange('phone')}
-            defaultValue={phone}
             placeholder='Phone Number'
           />
         </Form.Item>
         <Form.Item name='website' label='Website'>
           <AutoComplete placeholder='website'>
-            <Input
-              onChange={handleChange('website')}
-              defaultValue={website}
-              placeholder='Website'
-            />
+            <Input onChange={handleChange('website')} />
           </AutoComplete>
         </Form.Item>
         <Form.Item
           name='about'
           label='About'
-          rules={{ required: true, message: 'Please tell us about the event' }}
+          rules={[
+            { required: true, message: 'Please tell us about the event' }
+          ]}
         >
           <Input.TextArea
             onChange={handleChange('about')}
-            defaultValue={about}
             placeholder='About the event'
           />
         </Form.Item>
@@ -151,7 +141,11 @@ export class event_details extends Component {
             <Button type='default' onClick={prevStep}>
               Previous
             </Button>
-            <Button type='primary' htmlType='submit'>
+            <Button
+              type='primary'
+              htmlType='submit'
+              style={{ marginLeft: '10px' }}
+            >
               Next
             </Button>
           </Form.Item>

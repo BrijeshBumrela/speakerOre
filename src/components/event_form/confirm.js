@@ -54,11 +54,15 @@ export class confirm extends Component {
         />
         <div className='steps-action'>
           <Form.Item {...tailLayout}>
-            <Button type='primary' onClick={this.props.submit}>
-              Done
-            </Button>
             <Button type='default' onClick={this.props.prevStep}>
               Previous
+            </Button>
+            <Button
+              type='primary'
+              onClick={this.props.submit}
+              style={{ marginLeft: '10px' }}
+            >
+              Done
             </Button>
           </Form.Item>
         </div>
