@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { List } from 'antd';
+import { List, Button, Form } from 'antd';
+
+const tailLayout = {
+  wrapperCol: {
+    offset: 8,
+    span: 10
+  }
+};
 
 export class confirm extends Component {
   render() {
@@ -45,6 +52,16 @@ export class confirm extends Component {
             </List.Item>
           )}
         />
+        <div className='steps-action'>
+          <Form.Item {...tailLayout}>
+            <Button type='primary' onClick={this.props.submit}>
+              Done
+            </Button>
+            <Button type='default' onClick={this.props.prevStep}>
+              Previous
+            </Button>
+          </Form.Item>
+        </div>
       </div>
     );
   }

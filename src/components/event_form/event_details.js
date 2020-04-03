@@ -1,10 +1,46 @@
 import React, { Component, Fragment } from 'react';
 import 'antd/dist/antd.css';
-import { Form, Input, Select, AutoComplete } from 'antd';
+import { Form, Input, Select, AutoComplete, Button } from 'antd';
 
 const { Option } = Select;
 
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 24
+    },
+    sm: {
+      span: 8
+    }
+  },
+  wrapperCol: {
+    xs: {
+      span: 15
+    },
+    sm: {
+      span: 10
+    }
+  }
+};
+
+const tailLayout = {
+  wrapperCol: {
+    offset: 8,
+    span: 10
+  }
+};
+
 export class event_details extends Component {
+  onFinish = values => {
+    console.log('Received values of form: ', values);
+    // this.props.submittedValues(values);
+    this.props.nextStep();
+  };
+
+  onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+  };
+
   prefixSelector = (
     <Form.Item name='prefix' noStyle>
       <Select
@@ -21,16 +57,31 @@ export class event_details extends Component {
 
   render() {
     const { about, tags, phone, website, email } = this.props.values;
-    const { handleChange, handleChangeLoc } = this.props;
+    const { handleChange, handleChangeTag, prevStep } = this.props;
     return (
-      <Fragment>
+      <Form
+        {...formItemLayout}
+        name='basic'
+        size={'middle'}
+        onFinish={this.onFinish}
+        onFinishFailed={this.onFinishFailed}
+        scrollToFirstError
+        initialValues={{
+          tags: tags,
+          email: email,
+          about: about,
+          website: website,
+          phone: phone
+        }}
+      >
         <Form.Item name='tags' label='Tags'>
           <Select
             mode='tags'
             style={{ width: '100%' }}
             tokenSeparators={[',']}
             defaultValue={tags}
-            onChange={handleChangeLoc('tags')}
+            onChange={handleChangeTag('tags')}
+            placeholder='Tags'
           >
             {this.children}
           </Select>
@@ -45,11 +96,15 @@ export class event_details extends Component {
             },
             {
               required: true,
-              message: 'Please input your E-mail!'
+              message: "Please input organiser's E-mail!"
             }
           ]}
         >
-          <Input onChange={handleChange('email')} defaultValue={email} />
+          <Input
+            onChange={handleChange('email')}
+            defaultValue={email}
+            placeholder='E-mail'
+          />
         </Form.Item>
         <Form.Item
           name='phone'
@@ -68,29 +123,40 @@ export class event_details extends Component {
             }}
             onChange={handleChange('phone')}
             defaultValue={phone}
+            placeholder='Phone Number'
           />
         </Form.Item>
-        <Form.Item
-          name='website'
-          label='Website'
-          rules={[
-            {
-              required: true,
-              message: 'Please input website!'
-            }
-          ]}
-        >
+        <Form.Item name='website' label='Website'>
           <AutoComplete placeholder='website'>
-            <Input onChange={handleChange('website')} defaultValue={website} />
+            <Input
+              onChange={handleChange('website')}
+              defaultValue={website}
+              placeholder='Website'
+            />
           </AutoComplete>
         </Form.Item>
-        <Form.Item name='about' label='About'>
+        <Form.Item
+          name='about'
+          label='About'
+          rules={{ required: true, message: 'Please tell us about the event' }}
+        >
           <Input.TextArea
             onChange={handleChange('about')}
             defaultValue={about}
+            placeholder='About the event'
           />
         </Form.Item>
-      </Fragment>
+        <div className='steps-action'>
+          <Form.Item {...tailLayout}>
+            <Button type='default' onClick={prevStep}>
+              Previous
+            </Button>
+            <Button type='primary' htmlType='submit'>
+              Next
+            </Button>
+          </Form.Item>
+        </div>
+      </Form>
     );
   }
 }

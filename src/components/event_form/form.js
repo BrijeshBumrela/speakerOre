@@ -27,58 +27,22 @@ const steps = [
   }
 ];
 
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24
-    },
-    sm: {
-      span: 8
-    }
-  },
-  wrapperCol: {
-    xs: {
-      span: 15
-    },
-    sm: {
-      span: 10
-    }
-  }
-};
-
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 10
-  }
-};
-
 export class form extends Component {
   state = {
     step: 0,
-    eventName: '',
-    start_date: '',
-    start_date_moment: '',
-    end_date: '',
-    end_date_moment: '',
-    street: '',
-    city: '',
-    state: '',
-    country: '',
-    postalcode: '',
-    about: '',
-    tags: [],
-    email: '',
-    phone: '',
-    website: ''
-  };
-
-  onFinish = values => {
-    console.log('Received values of form: ', values);
-  };
-
-  onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+    step_one_fields: {
+      eventName: '',
+      start_date: '',
+      start_date_moment: null,
+      end_date: '',
+      end_date_moment: null,
+      street: '',
+      city: '',
+      state: '',
+      country: '',
+      postalcode: ''
+    },
+    step_two_fields: { about: '', tags: [], email: '', phone: '', website: '' }
   };
 
   nextStep = () => {
@@ -95,88 +59,82 @@ export class form extends Component {
     });
   };
 
-  handleChange = input => e => {
+  handleChange1 = input => e => {
+    const step_one_fields = { ...this.state.step_one_fields };
+
+    step_one_fields[input] = e.target.value;
     this.setState({
-      [input]: e.target.value
+      step_one_fields
+    });
+  };
+
+  handleChange2 = input => e => {
+    const step_two_fields = { ...this.state.step_two_fields };
+    step_two_fields[input] = e.target.value;
+    this.setState({
+      step_two_fields
     });
   };
 
   handleChangeDate = input => (dates, dateString) => {
+    const step_one_fields = { ...this.state.step_one_fields };
     if (input === 'start_date') {
+      step_one_fields.start_date_moment = dates;
+      step_one_fields.start_date = dateString;
       this.setState({
-        [input]: dateString
-      });
-      this.setState({
-        start_date_moment: dates
+        step_one_fields
       });
     } else {
+      step_one_fields.end_date_moment = dates;
+      step_one_fields.end_date = dateString;
       this.setState({
-        [input]: dateString
-      });
-      this.setState({
-        end_date_moment: dates
+        step_one_fields
       });
     }
   };
 
-  handleChangeLoc = input => loc => {
+  handleChangeTag = input => new_tags => {
+    const step_two_fields = { ...this.state.step_two_fields };
+    step_two_fields[input] = new_tags;
     this.setState({
-      [input]: loc
+      step_two_fields
     });
   };
 
-  submit = values => {
-    console.log('values: ', values);
+  submit = () => {
+    console.log(
+      'values: ',
+      this.state.step_one_fields,
+      this.state.step_two_fields
+    );
     message.success('Processing complete!');
   };
 
+  getStepOneValue = values => {
+    const { step_one_fields } = this.state;
+    console.log(values);
+    this.setState({
+      step_one_fields: {
+        ...step_one_fields,
+        ...values
+      }
+    });
+  };
+
+  getStepTwoValue = values => {
+    const { step_two_fields } = this.state;
+    this.setState({
+      step_two_fields: {
+        ...step_two_fields,
+        ...values
+      }
+    });
+  };
+
   render() {
-    const { step } = this.state;
-    const {
-      eventName,
-      start_date,
-      end_date,
-      start_date_moment,
-      end_date_moment,
-      street,
-      city,
-      state,
-      country,
-      postalcode,
-      about,
-      tags,
-      phone,
-      website,
-      email
-    } = this.state;
-    const values1 = {
-      eventName,
-      start_date,
-      end_date,
-      start_date_moment,
-      end_date_moment,
-      street,
-      city,
-      state,
-      country,
-      postalcode
-    };
-    const values2 = { about, tags, phone, website, email };
-    const values3 = {
-      eventName,
-      start_date,
-      end_date,
-      street,
-      city,
-      state,
-      country,
-      postalcode,
-      about,
-      tags,
-      phone,
-      website,
-      email
-    };
+    const { step, step_one_fields, step_two_fields } = this.state;
+    const values3 = Object.assign(step_one_fields, step_two_fields);
+    console.log(values3);
     return (
       <Fragment>
         <Navbar heading={'Add Event'} />
@@ -195,66 +153,35 @@ export class form extends Component {
             ))}
           </Steps>
 
-          <Form
-            {...formItemLayout}
-            name='add_event'
-            size={'middle'}
-            onFinish={this.onFinish}
-            onFinishFailed={this.onFinishFailed}
-            scrollToFirstError
-          >
-            <div className='steps-content'>
-              {step === 0 && (
-                <Event_basic_details
-                  handleChange={this.handleChange}
-                  handleChangeDate={this.handleChangeDate}
-                  handleChangeLoc={this.handleChangeLoc}
-                  values={values1}
-                />
-              )}
-              {step === 1 && (
-                <Event_details
-                  handleChange={this.handleChange}
-                  handleChangeLoc={this.handleChangeLoc}
-                  values={values2}
-                />
-              )}
-              {step === 2 && (
-                <Confirmation
-                  handleChange={this.handleChange}
-                  values={values3}
-                />
-              )}
-            </div>
-
-            <div className='steps-action'>
-              <Form.Item {...tailLayout}>
-                {step < steps.length - 1 && (
-                  <Button
-                    type='primary'
-                    htmlType='submit'
-                    onClick={this.nextStep}
-                  >
-                    Next
-                  </Button>
-                )}
-                {step === steps.length - 1 && (
-                  <Button type='primary' htmlType='submit'>
-                    Done
-                  </Button>
-                )}
-                {step > 0 && (
-                  <Button
-                    style={{ margin: 8 }}
-                    htmlType='submit'
-                    onClick={this.prevStep}
-                  >
-                    Previous
-                  </Button>
-                )}
-              </Form.Item>
-            </div>
-          </Form>
+          <div className='steps-content'>
+            {step === 0 && (
+              <Event_basic_details
+                handleChange={this.handleChange1}
+                handleChangeDate={this.handleChangeDate}
+                handleChangeTag={this.handleChangeTag}
+                submittedValues={this.getStepOneValue}
+                nextStep={this.nextStep}
+                values={step_one_fields}
+              />
+            )}
+            {step === 1 && (
+              <Event_details
+                handleChange={this.handleChange2}
+                handleChangeTag={this.handleChangeTag}
+                submittedValues={this.getStepTwoValue}
+                nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                values={step_two_fields}
+              />
+            )}
+            {step === 2 && (
+              <Confirmation
+                values={values3}
+                prevStep={this.prevStep}
+                submit={this.submit}
+              />
+            )}
+          </div>
         </div>
         <FooterSection />
       </Fragment>
