@@ -8,26 +8,6 @@ import { Button } from 'antd';
 
 import './style.css';
 
-// const home = {
-//   background: 'none',
-//   height: '100%'
-// };
-
-// const home_bg_video = {
-//   position: 'fixed',
-//   top: '50%',
-//   left: '50%',
-//   WebkitTransform: 'translateX(-50%) translateY(-50%)',
-//   transform: 'translateX(-50%) translateY(-50%)',
-//   minWidth: '100%',
-//   minHeight: '100%',
-//   width: 'auto',
-//   height: 'auto',
-//   // zIndex: '-1',
-//   // background: 'url('../../static/logo.png') no-repeat',
-//   backgroundSize: 'cover'
-// };
-
 const button_style = {
   fontFamily: 'sans-serif, Raleway',
   color: '#d3d3d3',
@@ -37,16 +17,20 @@ const button_style = {
 
 const Video = () => {
   return (
-    <section className='home'>
-      <ReactPlayer
-        playsinline
-        url={media}
-        poster={logo}
-        playing
-        loop={true}
-        muted
-        className='home_bg_video'
-      />
+    <>
+      <div className="video_wrapper">
+          <ReactPlayer
+            playsinline
+            url={media}
+            poster={logo}
+            playing
+            loop={true}
+            muted
+            width="100%"
+            height="100%"
+          />
+      </div>
+
       <div className='home_overlay'>
         <div className='home_content'>
           <div className='home_content_inner'>
@@ -72,7 +56,7 @@ const Video = () => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

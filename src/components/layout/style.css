@@ -6,6 +6,12 @@
   float: left;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body,
 html {
   height: 100%;
@@ -17,6 +23,16 @@ a {
 
 .page-wrapper {
   min-height: 100%;
+}
+
+.nav-wrapper {
+  position: absolute;
+  height: 48px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  margin-top: 10px;
 }
 
 .text-block {

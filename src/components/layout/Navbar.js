@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Login from './Login';
 import './style.css';
 import AuthContext from '../context/auth/authContext';
-import Background from '../../static/nav_bg.jpg';
+import Background from '../../static/nav_bg1.jpg';
 import logo from '../../static/logo.png';
 
 const wimg = {
@@ -40,8 +40,15 @@ const bg = {
   paddingRight: '100px'
 };
 
+const homeStyle = {
+  position: 'absolute',
+  top: '5%',
+  right: '0',
+  left: '0'
+}
+
 const a_style = {
-  color: '#0f74a8'
+  color: '#000000'
 };
 
 const { SubMenu } = Menu;
@@ -67,9 +74,8 @@ const Navbar = ({ title, isHome, heading }) => {
   };
 
   const isSubscribed = true;
-
   const authLinks = (
-    <div style={isHome ? {} : wimg}>
+    <div style={isHome ? homeStyle : wimg}>
       <Menu mode='horizontal' style={isHome ? nav_style : bg}>
         <Menu.Item key='logo' style={{ textDecoration: 'none' }}>
           <Link to='/' style={a_style}>
@@ -128,12 +134,11 @@ const Navbar = ({ title, isHome, heading }) => {
   );
 
   const guestLinks = (
-    <div style={isHome ? {} : null}>
+    <div style={isHome ? {} : wimg}>
       <Menu mode='horizontal' style={isHome ? nav_style : bg}>
         <Menu.Item key='logo' style={{ textDecoration: 'none' }}>
           <Link to='/' style={a_style}>
-            <strong style={{ color: '#0f74a8' }}>Speaker</strong>
-            <span style={{ color: '#d39e00' }}>Ore</span>
+            SpeakerOre
           </Link>
         </Menu.Item>
         <Menu.SubMenu
@@ -162,21 +167,21 @@ const Navbar = ({ title, isHome, heading }) => {
           </Link>
         </Menu.Item>
       </Menu>
-      {!isHome &&
-        // <div>
-        //   <div className='text-block'>
-        //     <h4>{heading}</h4>
-        //   </div>
-        // </div>
-        null}
+      {!isHome && (
+        <div>
+          <div className='text-block'>
+            <h4>{heading}</h4>
+          </div>
+        </div>
+      )}
     </div>
   );
 
   return (
-    <Fragment>
+    <div className="nav-wrapper">
       {isAuthenticated ? authLinks : guestLinks}
       {auth_modal_visible && <Login />}
-    </Fragment>
+    </div>
   );
 };
 
